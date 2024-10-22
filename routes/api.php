@@ -19,5 +19,6 @@ Route::middleware('auth:sanctum')->group(function () {
     })->name('auth.user');
     Route::apiResource('teams', TeamController::class);
     Route::apiResource('games', GameController::class);
+    Route::get('standings', [TeamController::class, 'standings'])->name('teams.standings');
 
 });
