@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\TeamController;
+use App\Http\Controllers\GameController;
 
 
 Route::prefix('auth')->group(function () {
@@ -16,5 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     })->name('auth.user');
+    Route::apiResource('teams', TeamController::class);
+    Route::apiResource('games', GameController::class);
 
 });
