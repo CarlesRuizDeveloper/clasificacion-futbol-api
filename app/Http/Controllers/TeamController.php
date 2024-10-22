@@ -42,4 +42,19 @@ class TeamController extends Controller
         $team->delete();
         return response()->json(null, 204);
     }
+
+    public function standings()
+{
+    $standings = Team::orderByDesc('points')
+                     ->orderByDesc('goals_for - goals_against')  
+                     ->orderByDesc('goals_for')  
+                     ->get();
+
+    $standings->each(function ($team, $index) {
+        $team->rank = $index + 1;
+    });
+
+    return response()->json($standings, 200);
+}
+
 }
